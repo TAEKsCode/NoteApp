@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="note"
+            type="com.example.noteapp.database.Note" />
+
+        <variable
+            name="clickListeneer"
+            type="com.example.noteapp.mainscreen.NoteClickListener" />
+
+        <variable
+            name="deleteListener"
+            type="com.example.noteapp.mainscreen.NoteDeleteListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:onClick="@{() -> clickListeneer.onClick(note)}"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/delete_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/delete_button"
+                    android:onClick="@{() -> deleteListener.onDeleteClick(note)}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_delete" />
+
+                <TextView
+                    android:id="@+id/note_text"
+                    noteText="@{note}"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:lines="3"
+                    android:padding="@dimen/default_padding"
+                    android:singleLine="false"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/delete_button"
+                    app:layout_constraintEnd_toStartOf="@+id/delete_button"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Some text in this view blalbllalsldalsl
+;vb;a;sd;asd;as;d;asd;a;dsd;;;sd;s;saddkasdkalsdhajsdhaskjdhaskjdhsa"
+                    tools:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/note_date"
+                    noteDate="@{note}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:padding="@dimen/default_padding"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/note_text"
+                    app:layout_constraintTop_toBottomOf="@+id/note_text"
+                    tools:text="10 of March"
+                    tools:textSize="15sp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
